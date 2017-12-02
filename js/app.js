@@ -54,7 +54,10 @@ function makeall() {
 		console_log("fork done");
 		upload(function() {
 			console_log("upload done");
-			loading(false);
+			pullreq(function() {
+				console_log("pullreq done");
+				loading(false);
+			});
 		});
 	});
 }
@@ -186,21 +189,26 @@ function upload(fn) {
 	);
 }
 
-//~ function pullrequest(fn) {
-	//~ curl(
-		//~ user,
-		//~ pass,
-		//~ "https://api.github.com/repos/"+user+"/"+repo+"/git/refs/heads/master",
-		//~ "",
-		//~ "GET",
-		//~ function(data) {
-			//~ fn();
-		//~ },
-		//~ function(data) {
-			//~ console_log(data);
-		//~ }
-	//~ );
-//~ }
+function pullreq(fn) {
+	curl(
+		user,
+		pass,
+		"https://api.github.com/repos/"+main+"/"+repo+"/pulls",
+		JSON.stringify({
+			"title": message,
+			"head": user+":master",
+			"base":"master"
+		}),
+		"POST",
+		function(data) {
+			fn();
+		},
+		function(data) {
+			console_log(data);
+			loading(false);
+		}
+	);
+}
 
 function curl(user,pass,url,data,method,success,error) {
 	$.ajax({
@@ -214,12 +222,10 @@ function curl(user,pass,url,data,method,success,error) {
 		processData: false,
 		data: data,
 		success: function(data,textStatus,jqXHR) {
-			//~ alert(JSON.stringify(data));
 			success(data);
 		},
 		error: function(jqXHR,textStatus,errorThrown){
-			//~ alert(textStatus);
-			error(textStatus);
+			error(jqXHR.status+": "+jqXHR.statusText);
 		}
 	});
 }
