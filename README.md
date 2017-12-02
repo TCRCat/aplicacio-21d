@@ -1,2 +1,3 @@
-# aplicacio-21d
-Aplicació per enviar les dades des de les escoles pel projecte "Defensem el Vot del 21D"
+# Aplicació 21D
+
+Aquesta aplicació permet enviar dades al sistema de recompte paral·lel pel 21D

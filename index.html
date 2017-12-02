@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="Aquesta aplicació permet enviar dades al sistema de recompte paral·lel pel 21D">
+    <meta name="author" content="TCR">
+    <link rel="icon" href="images/favicon.ico">
+
+    <title>Aplicació 21D</title>
+
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container">
+		<h1>Aplicació 21D</h1>
+		<p class="lead">Aquesta aplicació permet enviar dades al sistema de recompte paral·lel pel 21D</p>
+
+		<div class="row">
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="text">Usuari</label>
+					<input type="text" class="form-control" id="user"/>
+				</div>
+
+				<div class="form-group">
+					<label for="text">Clau d'accès</label>
+					<input type="password" class="form-control" id="pass"/>
+				</div>
+
+				<div class="form-group">
+					<label for="text">Filename</label>
+					<input type="text" class="form-control" id="filename"/>
+				</div>
+
+				<div class="form-group">
+					<label for="text">Message</label>
+					<input type="text" class="form-control" id="message"/>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="text">Content</label>
+					<textarea class="form-control" id="content" style="height:200px;"></textarea>
+				</div>
+
+				<div class="form-group">
+					<button id="button1" class="btn btn-primary">Enviar</button>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="text">Image</label>
+					<img id="preview" class="form-control" style="height:200px;">
+				</div>
+
+				<div class="form-group">
+					<input type="file" accept="image/*" capture="camera" id="camera" style="display:none;">
+					<button id="camera2" class="btn btn-primary">Camera</button>
+					<button id="button2" class="btn btn-primary">Enviar</button>
+				</div>
+			</div>
+
+			<div class="col-md-12">
+				<pre id="log"></pre>
+			</div>
+		</div>
+
+    </div>
+
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+    <div class="loading">Loading&#8230;</div>
+  </body>
+</html>
