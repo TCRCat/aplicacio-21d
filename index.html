@@ -12,7 +12,9 @@
     <title>Aplicació 21D</title>
 
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!--
     <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+-->
     <link href="css/style.css" rel="stylesheet">
   </head>
 
@@ -62,8 +64,8 @@
 							</div>
 
 							<div class="form-group hidden">
-								<label for="VPP">PP</label>
-								<input type="text" class="form-control" id="VPP"/>
+								<label for="VPPC">PP</label>
+								<input type="text" class="form-control" id="VPPC"/>
 							</div>
 
 							<div class="form-group hidden">
@@ -92,18 +94,18 @@
 							</div>
 
 							<div class="form-group hidden">
-								<label for="VPUM">PUM+J</label>
-								<input type="text" class="form-control" id="VPUM"/>
+								<label for="VPUMJUST">PUM+J</label>
+								<input type="text" class="form-control" id="VPUMJUST"/>
 							</div>
 
 							<div class="form-group hidden">
-								<label for="VCATCOMU">CatComú-Podem</label>
-								<input type="text" class="form-control" id="VCATCOMU"/>
+								<label for="VCOM">CatComú-Podem</label>
+								<input type="text" class="form-control" id="VCOM"/>
 							</div>
 
 							<div class="form-group hidden">
-								<label for="VJUNTS">JUNTSxCAT</label>
-								<input type="text" class="form-control" id="VJUNTS"/>
+								<label for="VJXC">JUNTSxCAT</label>
+								<input type="text" class="form-control" id="VJXC"/>
 							</div>
 
 							<div class="form-group hidden">
@@ -127,8 +129,8 @@
 							</div>
 
 							<div class="form-group hidden">
-								<label for="VCNV">CNV</label>
-								<input type="text" class="form-control" id="VCNV"/>
+								<label for="VCONVER">CNV</label>
+								<input type="text" class="form-control" id="VCONVER"/>
 							</div>
 
 							<div class="form-group hidden">
@@ -142,8 +144,8 @@
 							</div>
 
 							<div class="form-group">
-								<label for="VBLANC">VOTS EN BLANC</label>
-								<input type="text" class="form-control" id="VBLANC"/>
+								<label for="VBLANCS">VOTS EN BLANC</label>
+								<input type="text" class="form-control" id="VBLANCS"/>
 							</div>
 
 							<div class="form-group">
@@ -165,11 +167,11 @@
 							<br/>
 							<div class="form-group">
 								<label for="preview">Previsualització de l'acta</label>
-								<img id="preview" class="form-control" src="images/camera.jpg" style="height:400px;">
+								<img id="preview" class="img-responsive img-thumbnail" src="images/camera.jpg">
 							</div>
 
 							<div class="form-group">
-								<input type="file" accept="image/*" capture="camera" id="camera" style="display:none;">
+								<input type="file" accept="image/*" capture="camera" id="camera" class="hidden">
 								<button id="camera2" class="btn btn-primary">Càmera</button>
 								<button id="enviar2" class="btn btn-primary">Enviar</button>
 							</div>
@@ -179,7 +181,7 @@
 							<br/>
 							<div class="form-group">
 								<label for="content">Entri el text de la incidència</label>
-								<textarea class="form-control" id="content" style="height:400px;"></textarea>
+								<textarea class="form-control" id="content"></textarea>
 							</div>
 
 							<div class="form-group">

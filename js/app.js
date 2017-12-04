@@ -3,8 +3,8 @@
 var user="";
 var pass="";
 
-var main="josepsanzcamp";
-var repo="test-21d";
+var main="";
+var repo="";
 
 var sha1=""; // old object
 var sha2=""; // old tree
@@ -25,77 +25,77 @@ var mesa="";
 var candidatures={
 	"BARCELONA":{
 		"VPSC":1,
-		"VPP":1,
+		"VPPC":1,
 		"VPACMA":1,
 		"VCS":1,
 		"VERC":1,
 		"VDIALEG":1,
 		"VCUP":1,
-		"VPUM":1,
-		"VCATCOMU":1,
-		"VJUNTS":1,
+		"VPUMJUST":1,
+		"VCOM":1,
+		"VJXC":1,
 		"VFAMILIA":1,
 		"VRECORTES":1,
 		"VDN":1,
 		"VPFIV":1,
-		"VCNV":1,
+		"VCONVER":1,
 		"VUNIDOS":1,
 		"VCILUS":0
 	},
 	"TARRAGONA":{
 		"VPSC":1,
-		"VPP":1,
+		"VPPC":1,
 		"VPACMA":1,
 		"VCS":1,
 		"VERC":1,
 		"VDIALEG":1,
 		"VCUP":1,
-		"VPUM":1,
-		"VCATCOMU":1,
-		"VJUNTS":1,
+		"VPUMJUST":1,
+		"VCOM":1,
+		"VJXC":1,
 		"VFAMILIA":0,
 		"VRECORTES":1,
 		"VDN":0,
 		"VPFIV":0,
-		"VCNV":0,
+		"VCONVER":0,
 		"VUNIDOS":0,
 		"VCILUS":0
 	},
 	"LLEIDA":{
 		"VPSC":1,
-		"VPP":1,
+		"VPPC":1,
 		"VPACMA":1,
 		"VCS":1,
 		"VERC":1,
 		"VDIALEG":1,
 		"VCUP":1,
-		"VPUM":1,
-		"VCATCOMU":1,
-		"VJUNTS":1,
+		"VPUMJUST":1,
+		"VCOM":1,
+		"VJXC":1,
 		"VFAMILIA":0,
 		"VRECORTES":1,
 		"VDN":0,
 		"VPFIV":0,
-		"VCNV":0,
+		"VCONVER":0,
 		"VUNIDOS":0,
 		"VCILUS":0
 	},
 	"GIRONA":{
 		"VPSC":1,
-		"VPP":1,
+		"VPPC":1,
 		"VPACMA":1,
 		"VCS":1,
 		"VERC":1,
 		"VDIALEG":1,
 		"VCUP":1,
-		"VPUM":1,
-		"VCATCOMU":1,
-		"VJUNTS":1,
+		"VPUMJUST":1,
+		"VCOM":1,
+		"VJXC":1,
 		"VFAMILIA":0,
 		"VRECORTES":1,
 		"VDN":0,
 		"VPFIV":0,
-		"VCNV":0,
+		"VCONVER":0,
 		"VUNIDOS":0,
 		"VCILUS":1
 	}
@@ -103,23 +103,23 @@ var candidatures={
 
 var camps=[
 	"VPSC",
-	"VPP",
+	"VPPC",
 	"VPACMA",
 	"VCS",
 	"VERC",
 	"VDIALEG",
 	"VCUP",
-	"VPUM",
-	"VCATCOMU",
-	"VJUNTS",
+	"VPUMJUST",
+	"VCOM",
+	"VJXC",
 	"VFAMILIA",
 	"VRECORTES",
 	"VDN",
 	"VPFIV",
-	"VCNV",
+	"VCONVER",
 	"VUNIDOS",
 	"VCILUS",
-	"VBLANC",
+	"VBLANCS",
 	"VNULS",
 	"VTOTAL"
 ];
@@ -162,8 +162,10 @@ $("#mesa").on("change",function() {
 		municipi=val[1];
 		escola=val[2];
 		mesa=val[3];
+		main=val[4];
+		repo=val[5];
 		$("#dades").parent().removeClass("hidden");
-		$("#dades").html(val.join("\n"));
+		$("#dades").html(val.slice(0,4).join("\n"));
 		$("#tabs").parent().removeClass("hidden");
 		maketab1(provincia);
 	} else {
@@ -177,9 +179,9 @@ $("#enviar1").on("click",function() {
 	pass=$("#pass").val();
 	filename=""+provincia+"/"+municipi+"/"+escola+"/"+mesa+"/"+"resultats.txt";
 	message="Resultats: usuari "+user+", provincia "+provincia+", municipi "+municipi+", escola "+escola+", mesa "+mesa;
-	content=[];
-	for(var i in camps) content[i]=$("#"+camps[i]).val();
-	content=btoa(content.join(";"));
+	var line2=[];
+	for(var i in camps) line2[i]=$("#"+camps[i]).val();
+	content=btoa([camps.join(";"),line2.join(";")].join("\n"));
 	makeall(function() {
 		for(var i in camps) $("#"+camps[i]).val("");
 	});
@@ -189,6 +191,7 @@ $("#camera").on("change",function() {
 	var file=$("#camera").get(0).files[0];
 	var blob=URL.createObjectURL(file);
 	$("#preview").prop("src",blob);
+
 });
 
 $("#camera2").on("click",function() {
