@@ -33,10 +33,20 @@
 					<label for="pass">Clau d'accès</label>
 					<input type="password" class="form-control" id="pass"/>
 				</div>
+
+				<div class="form-group hidden">
+					<label for="mesa">Seleccioni mesa</label>
+					<select class="form-control" id="mesa"></select>
+				</div>
+
+				<div class="form-group hidden">
+					<label for="dades">Dades de la mesa</label>
+					<pre id="dades"></pre>
+				</div>
 			</div>
 
-			<div class="col-md-4">
-				<div role="tabpanel">
+			<div class="col-md-4 hidden">
+				<div role="tabpanel" id="tabs">
 					<ul class="nav nav-tabs" role="tablist">
 						<li role="presentation" class="active"><a href="#resultats" aria-controls="resultats" role="tab" data-toggle="tab">Resultats</a></li>
 						<li role="presentation"><a href="#actes" aria-controls="actes" role="tab" data-toggle="tab">Actes</a></li>
@@ -46,103 +56,108 @@
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane active" id="resultats">
 							<br/>
-							<div class="form-group">
-								<label for="FIELD[1]ID">FIELD[1]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[1]ID"/>
+							<div class="form-group hidden">
+								<label for="VPSC">PSC</label>
+								<input type="text" class="form-control" id="VPSC"/>
+							</div>
+
+							<div class="form-group hidden">
+								<label for="VPP">PP</label>
+								<input type="text" class="form-control" id="VPP"/>
+							</div>
+
+							<div class="form-group hidden">
+								<label for="VPACMA">PACMA</label>
+								<input type="text" class="form-control" id="VPACMA"/>
+							</div>
+
+							<div class="form-group hidden">
+								<label for="VCS">C’s</label>
+								<input type="text" class="form-control" id="VCS"/>
+							</div>
+
+							<div class="form-group hidden">
+								<label for="VERC">ERC-CatSí</label>
+								<input type="text" class="form-control" id="VERC"/>
+							</div>
+
+							<div class="form-group hidden">
+								<label for="VDIALEG">DIÀLEG</label>
+								<input type="text" class="form-control" id="VDIALEG"/>
+							</div>
+
+							<div class="form-group hidden">
+								<label for="VCUP">CUP</label>
+								<input type="text" class="form-control" id="VCUP"/>
+							</div>
+
+							<div class="form-group hidden">
+								<label for="VPUM">PUM+J</label>
+								<input type="text" class="form-control" id="VPUM"/>
+							</div>
+
+							<div class="form-group hidden">
+								<label for="VCATCOMU">CatComú-Podem</label>
+								<input type="text" class="form-control" id="VCATCOMU"/>
+							</div>
+
+							<div class="form-group hidden">
+								<label for="VJUNTS">JUNTSxCAT</label>
+								<input type="text" class="form-control" id="VJUNTS"/>
+							</div>
+
+							<div class="form-group hidden">
+								<label for="VFAMILIA">LA FAMILIA</label>
+								<input type="text" class="form-control" id="VFAMILIA"/>
+							</div>
+
+							<div class="form-group hidden">
+								<label for="VRECORTES">RECORTES CERO-GRUPO VERDE</label>
+								<input type="text" class="form-control" id="VRECORTES"/>
+							</div>
+
+							<div class="form-group hidden">
+								<label for="VDN">DN</label>
+								<input type="text" class="form-control" id="VDN"/>
+							</div>
+
+							<div class="form-group hidden">
+								<label for="VPFIV">PFiV</label>
+								<input type="text" class="form-control" id="VPFIV"/>
+							</div>
+
+							<div class="form-group hidden">
+								<label for="VCNV">CNV</label>
+								<input type="text" class="form-control" id="VCNV"/>
+							</div>
+
+							<div class="form-group hidden">
+								<label for="VUNIDOS">UNIDOS-DEf-Socialistas</label>
+								<input type="text" class="form-control" id="VUNIDOS"/>
+							</div>
+
+							<div class="form-group hidden">
+								<label for="VCILUS">CILUS</label>
+								<input type="text" class="form-control" id="VCILUS"/>
 							</div>
 
 							<div class="form-group">
-								<label for="FIELD[2]ID">FIELD[2]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[2]ID"/>
+								<label for="VBLANC">VOTS EN BLANC</label>
+								<input type="text" class="form-control" id="VBLANC"/>
 							</div>
 
 							<div class="form-group">
-								<label for="FIELD[3]ID">FIELD[3]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[3]ID"/>
+								<label for="VNULS">VOTS NULS</label>
+								<input type="text" class="form-control" id="VNULS"/>
 							</div>
 
 							<div class="form-group">
-								<label for="FIELD[4]ID">FIELD[4]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[4]ID"/>
+								<label for="VTOTAL">VOTS TOTALS</label>
+								<input type="text" class="form-control" id="VTOTAL"/>
 							</div>
 
 							<div class="form-group">
-								<label for="FIELD[5]ID">FIELD[5]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[5]ID"/>
-							</div>
-
-							<div class="form-group">
-								<label for="FIELD[6]ID">FIELD[6]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[6]ID"/>
-							</div>
-
-							<div class="form-group">
-								<label for="FIELD[7]ID">FIELD[7]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[7]ID"/>
-							</div>
-
-							<div class="form-group">
-								<label for="FIELD[8]ID">FIELD[8]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[8]ID"/>
-							</div>
-
-							<div class="form-group">
-								<label for="FIELD[9]ID">FIELD[9]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[9]ID"/>
-							</div>
-
-							<div class="form-group">
-								<label for="FIELD[10]ID">FIELD[10]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[10]ID"/>
-							</div>
-
-							<div class="form-group">
-								<label for="FIELD[11]ID">FIELD[11]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[11]ID"/>
-							</div>
-
-							<div class="form-group">
-								<label for="FIELD[12]ID">FIELD[12]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[12]ID"/>
-							</div>
-
-							<div class="form-group">
-								<label for="FIELD[13]ID">FIELD[13]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[13]ID"/>
-							</div>
-
-							<div class="form-group">
-								<label for="FIELD[14]ID">FIELD[14]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[14]ID"/>
-							</div>
-
-							<div class="form-group">
-								<label for="FIELD[15]ID">FIELD[15]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[15]ID"/>
-							</div>
-
-							<div class="form-group">
-								<label for="FIELD[16]ID">FIELD[16]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[16]ID"/>
-							</div>
-
-							<div class="form-group">
-								<label for="FIELD[17]ID">FIELD[17]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[17]ID"/>
-							</div>
-
-							<div class="form-group">
-								<label for="FIELD[18]ID">FIELD[18]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[18]ID"/>
-							</div>
-
-							<div class="form-group">
-								<label for="FIELD[19]ID">FIELD[19]LABEL</label>
-								<input type="text" class="form-control" id="FIELD[19]ID"/>
-							</div>
-
-							<div class="form-group">
-								<button id="button1" class="btn btn-primary">Enviar</button>
+								<button id="enviar1" class="btn btn-primary">Enviar</button>
 							</div>
 						</div>
 
@@ -156,7 +171,7 @@
 							<div class="form-group">
 								<input type="file" accept="image/*" capture="camera" id="camera" style="display:none;">
 								<button id="camera2" class="btn btn-primary">Càmera</button>
-								<button id="button2" class="btn btn-primary">Enviar</button>
+								<button id="enviar2" class="btn btn-primary">Enviar</button>
 							</div>
 						</div>
 
@@ -168,14 +183,14 @@
 							</div>
 
 							<div class="form-group">
-								<button id="button3" class="btn btn-primary">Enviar</button>
+								<button id="enviar3" class="btn btn-primary">Enviar</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-md-12">
+			<div class="col-md-4 hidden">
 				<pre id="log"></pre>
 			</div>
 		</div>
@@ -184,6 +199,7 @@
 
     <script src="lib/jquery/jquery.min.js"></script>
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="lib/phpjs/php.min.js"></script>
     <script src="js/app.js"></script>
     <div class="loading">Loading&#8230;</div>
   </body>
