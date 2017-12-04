@@ -152,7 +152,7 @@ $("#mesa").on("change",function() {
 $("#enviar1").on("click",function() {
 	user=$("#user").val();
 	pass=$("#pass").val();
-	filename="resultats.txt";
+	filename=""+provincia+"/"+municipi+"/"+escola+"/"+mesa+"/"+"resultats.txt";
 	message="Resultats: usuari "+user+", provincia "+provincia+", municipi "+municipi+", escola "+escola+", mesa "+mesa;
 	content=[];
 	var camps=["VPSC","VPP","VPACMA","VCS","VERC","VDIALEG","VCUP","VPUM","VCATCOMU","VJUNTS","VFAMILIA","VRECORTES","VDN","VPFIV","VCNV","VUNIDOS","VCILUS","VBLANC","VNULS","VTOTAL"];
@@ -174,7 +174,7 @@ $("#camera2").on("click",function() {
 $("#enviar2").on("click",function() {
 	user=$("#user").val();
 	pass=$("#pass").val();
-	filename="acta.jpg";
+	filename=""+provincia+"/"+municipi+"/"+escola+"/"+mesa+"/"+"acta.jpg";
 	message="Actes: usuari "+user+", provincia "+provincia+", municipi "+municipi+", escola "+escola+", mesa "+mesa;
 	var file=$("#camera").get(0).files[0];
 	var reader=new FileReader();
@@ -191,7 +191,7 @@ $("#enviar2").on("click",function() {
 $("#enviar3").on("click",function() {
 	user=$("#user").val();
 	pass=$("#pass").val();
-	filename="incidencia.txt";
+	filename=""+provincia+"/"+municipi+"/"+escola+"/"+mesa+"/"+"incidencia-"+date("YmdHis")+".txt";
 	message="Incidencies: usuari "+user+", provincia "+provincia+", municipi "+municipi+", escola "+escola+", mesa "+mesa;
 	content=btoa($("#content").val());
 	makeall();
