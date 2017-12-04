@@ -146,6 +146,7 @@ $("#user,#pass").on("change",function() {
 			},
 			error: function(jqXHR,textStatus,errorThrown){
 				loading(false);
+				console_log(jqXHR.status+": "+jqXHR.statusText);
 				$("#mesa option").remove();
 				$("#mesa").parent().addClass("hidden");
 				$("#mesa").trigger("change");
