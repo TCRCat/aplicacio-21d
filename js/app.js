@@ -184,18 +184,8 @@ $("#enviar1").on("click",function() {
 	content=btoa([camps.join(";"),line2.join(";")].join("\n"));
 	makeall(function() {
 		for(var i in camps) $("#"+camps[i]).val("");
+		$("#enviar1").attr("disabled","disabled");
 	});
-});
-
-$("#camera").on("change",function() {
-	var file=$("#camera").get(0).files[0];
-	var blob=URL.createObjectURL(file);
-	$("#preview").prop("src",blob);
-
-});
-
-$("#camera2").on("click",function() {
-	$("#camera").trigger("click");
 });
 
 $("#enviar2").on("click",function() {
@@ -210,6 +200,7 @@ $("#enviar2").on("click",function() {
 		makeall(function() {
 			$("#camera").val("");
 			$("#preview").prop("src","images/camera.jpg");
+			$("#enviar2").attr("disabled","disabled");
 		});
 	};
 	reader.onerror=function() {
@@ -226,7 +217,75 @@ $("#enviar3").on("click",function() {
 	content=btoa($("#content").val());
 	makeall(function() {
 		$("#content").val("");
+		$("#enviar3").attr("disabled","disabled");
 	});
+});
+
+$("#"+camps.join(",#")).on("change",function() {
+	var key=$(this).attr("id");
+	var val=$(this).val();
+	var error=0;
+	if(val!="") {
+		if(isNaN(val)) error=1;
+		if(!Number.isInteger(parseFloat(val))) error=1;
+		if(parseInt(val)<0) error=1;
+		if(key=="VTOTAL") {
+			var total=0;
+			for(var i in camps) {
+				var key2=camps[i];
+				var val2=$("#"+camps[i]).val();
+				if(key2!="VTOTAL" && val2!="") {
+					total+=parseInt(val2);
+				}
+			}
+			if(total!=parseInt(val)) error=1;
+		}
+	}
+	if(error) {
+		$(this).parent().addClass("has-error");
+	} else {
+		$(this).parent().removeClass("has-error");
+		if(val!="") $(this).val(parseInt(val));
+	}
+	if(key!="VTOTAL") $("#VTOTAL").trigger("change");
+	$("#resultats").trigger("change");
+});
+
+$("#resultats").on("change",function() {
+	var error=0;
+	var hasdata=0;
+	for(var i in camps) {
+		if($("#"+camps[i]).parent().hasClass("has-error")) {
+			error=1;
+		}
+		if($("#"+camps[i]).val()!="") {
+			hasdata=1;
+		}
+	}
+	if(!error && hasdata) {
+		$("#enviar1").removeAttr("disabled");
+	} else {
+		$("#enviar1").attr("disabled","disabled");
+	}
+});
+
+$("#camera").on("change",function() {
+	var file=$("#camera").get(0).files[0];
+	var blob=URL.createObjectURL(file);
+	$("#preview").prop("src",blob);
+	$("#enviar2").removeAttr("disabled");
+});
+
+$("#camera2").on("click",function() {
+	$("#camera").trigger("click");
+});
+
+$("#content").on("change",function() {
+	if($(this).val()!="") {
+		$("#enviar3").removeAttr("disabled");
+	} else {
+		$("#enviar3").attr("disabled","disabled");
+	}
 });
 
 // FUNCIONS
