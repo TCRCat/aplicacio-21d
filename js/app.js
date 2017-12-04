@@ -1,4 +1,7 @@
 
+$("#user").val("foluwe");
+$("#pass").val("josepsanzcamp.123");
+
 var user="";
 var pass="";
 var main="josepsanzcamp";
@@ -15,17 +18,17 @@ var message="";
 $("#button1").on("click",function() {
 	user=$("#user").val();
 	pass=$("#pass").val();
-	filename=$("#filename").val();
-	message=$("#message").val();
-	content=btoa($("#content").val());
+	filename="resultats.txt";
+	message="Resultats: usuari "+user+", provincia B, municipi C, escola Y, mesa Z";
+	content="TODO";
 	makeall();
 });
 
 $("#button2").on("click",function() {
 	user=$("#user").val();
 	pass=$("#pass").val();
-	filename=$("#filename").val();
-	message=$("#message").val();
+	filename="acta.jpg";
+	message="Actes: usuari "+user+", provincia B, municipi C, escola Y, mesa Z";
 	var file=$("#camera").get(0).files[0];
 	var reader=new FileReader();
 	reader.onload=function(data) {
@@ -36,6 +39,15 @@ $("#button2").on("click",function() {
 		console_log("error");
 	};
 	reader.readAsBinaryString(file);
+});
+
+$("#button3").on("click",function() {
+	user=$("#user").val();
+	pass=$("#pass").val();
+	filename="resultats.txt";
+	message="Incidencies: usuari "+user+", provincia B, municipi C, escola Y, mesa Z";
+	content=btoa($("#content").val());
+	makeall();
 });
 
 $("#camera").on("change",function() {
