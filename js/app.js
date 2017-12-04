@@ -149,6 +149,7 @@ $("#user,#pass").on("change",function() {
 				$("#mesa option").remove();
 				$("#mesa").parent().addClass("hidden");
 				$("#mesa").trigger("change");
+				modal("Atenció!!!","El nom d'usuari que has entrat no existeix. Si el problema persisteix, per favor, posat en contacte amb algú de suport");
 			}
 		});
 	}
@@ -168,6 +169,7 @@ $("#mesa").on("change",function() {
 		$("#dades").html(val.slice(0,4).join("\n"));
 		$("#tabs").parent().removeClass("hidden");
 		maketab1(provincia);
+		$('#tabs a:first').tab('show');
 	} else {
 		$("#dades").parent().addClass("hidden");
 		$("#tabs").parent().addClass("hidden");
@@ -288,6 +290,14 @@ $("#content").on("change",function() {
 	}
 });
 
+$("#debug").on("change",function() {
+	if($(this).is(":checked")) {
+		$("#log").parent().removeClass("hidden");
+	} else {
+		$("#log").parent().addClass("hidden");
+	}
+});
+
 // FUNCIONS
 function makeall(fn) {
 	loading(true);
@@ -316,6 +326,11 @@ function fork(fn) {
 		},
 		function(data) {
 			loading(false);
+			if(data=="401: Unauthorized") {
+				modal("Atenció!!!","La clau de github que has entrat no es correcte. Si el problema persisteix, per favor, posat en contacte amb algú de suport");
+			} else {
+				modal("Atenció!!!","S'ha produit l'error "+data+". Si el problema persisteix, per favor, posat en contacte amb algú de suport");
+			}
 			console_log(data);
 		}
 	);
@@ -474,7 +489,6 @@ function curl(user,pass,url,data,method,success,error) {
 }
 
 function console_log(text) {
-	$("#log").parent().removeClass("hidden");
 	$("#log").append(text+"\n");
 }
 
@@ -495,4 +509,10 @@ function maketab1(provincia) {
 			}
 		}
 	}
+}
+
+function modal(title,body) {
+	$('#modal .modal-title').html(title);
+	$('#modal .modal-body p').html(body);
+	$('#modal').modal();
 }
