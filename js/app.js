@@ -101,6 +101,29 @@ var candidatures={
 	}
 }
 
+var camps=[
+	"VPSC",
+	"VPP",
+	"VPACMA",
+	"VCS",
+	"VERC",
+	"VDIALEG",
+	"VCUP",
+	"VPUM",
+	"VCATCOMU",
+	"VJUNTS",
+	"VFAMILIA",
+	"VRECORTES",
+	"VDN",
+	"VPFIV",
+	"VCNV",
+	"VUNIDOS",
+	"VCILUS",
+	"VBLANC",
+	"VNULS",
+	"VTOTAL"
+];
+
 // EVENTS
 $("#user,#pass").on("change",function() {
 	user=$("#user").val();
@@ -155,10 +178,11 @@ $("#enviar1").on("click",function() {
 	filename=""+provincia+"/"+municipi+"/"+escola+"/"+mesa+"/"+"resultats.txt";
 	message="Resultats: usuari "+user+", provincia "+provincia+", municipi "+municipi+", escola "+escola+", mesa "+mesa;
 	content=[];
-	var camps=["VPSC","VPP","VPACMA","VCS","VERC","VDIALEG","VCUP","VPUM","VCATCOMU","VJUNTS","VFAMILIA","VRECORTES","VDN","VPFIV","VCNV","VUNIDOS","VCILUS","VBLANC","VNULS","VTOTAL"];
 	for(var i in camps) content[i]=$("#"+camps[i]).val();
 	content=btoa(content.join(";"));
-	makeall();
+	makeall(function() {
+		for(var i in camps) $("#"+camps[i]).val("");
+	});
 });
 
 $("#camera").on("change",function() {
@@ -180,7 +204,10 @@ $("#enviar2").on("click",function() {
 	var reader=new FileReader();
 	reader.onload=function(data) {
 		content=btoa(data.target.result);
-		makeall();
+		makeall(function() {
+			$("#camera").val("");
+			$("#preview").prop("src","images/camera.jpg");
+		});
 	};
 	reader.onerror=function() {
 		console_log("error");
@@ -194,11 +221,13 @@ $("#enviar3").on("click",function() {
 	filename=""+provincia+"/"+municipi+"/"+escola+"/"+mesa+"/"+"incidencia-"+date("YmdHis")+".txt";
 	message="Incidencies: usuari "+user+", provincia "+provincia+", municipi "+municipi+", escola "+escola+", mesa "+mesa;
 	content=btoa($("#content").val());
-	makeall();
+	makeall(function() {
+		$("#content").val("");
+	});
 });
 
 // FUNCIONS
-function makeall() {
+function makeall(fn) {
 	loading(true);
 	fork(function() {
 		console_log("fork done");
@@ -207,6 +236,7 @@ function makeall() {
 			pullreq(function() {
 				loading(false);
 				console_log("pullreq done");
+				fn();
 			});
 		});
 	});
@@ -356,6 +386,7 @@ function pullreq(fn) {
 		function(data) {
 			loading(false);
 			console_log(data);
+			fn();
 		}
 	);
 }
