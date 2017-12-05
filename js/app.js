@@ -145,12 +145,17 @@ $("#user,#pass").on("change",function() {
 				$("#mesa").val($("#mesa option:first").val()).trigger("change");
 			},
 			error: function(jqXHR,textStatus,errorThrown){
+				var data=jqXHR.status+": "+jqXHR.statusText;
 				loading(false);
-				console_log(jqXHR.status+": "+jqXHR.statusText);
-				$("#mesa option").remove();
-				$("#mesa").parent().addClass("hidden");
-				$("#mesa").trigger("change");
-				modal("Atenció!!!","El nom d'usuari que has entrat no existeix. Si el problema persisteix, per favor, posat en contacte amb algú de suport");
+				console_log(data);
+				if(data=="404: Not Found") {
+					$("#mesa option").remove();
+					$("#mesa").parent().addClass("hidden");
+					$("#mesa").trigger("change");
+					erroruser();
+				} else {
+					errordata(data);
+				}
 			}
 		});
 	}
@@ -333,12 +338,12 @@ function fork(fn) {
 		},
 		function(data) {
 			loading(false);
-			if(data=="401: Unauthorized") {
-				modal("Atenció!!!","La clau de github que has entrat no es correcte. Si el problema persisteix, per favor, posat en contacte amb algú de suport");
-			} else {
-				modal("Atenció!!!","S'ha produit l'error "+data+". Si el problema persisteix, per favor, posat en contacte amb algú de suport");
-			}
 			console_log(data);
+			if(data=="401: Unauthorized") {
+				errorpass();
+			} else {
+				errordata(data);
+			}
 		}
 	);
 }
@@ -419,36 +424,42 @@ function upload(fn) {
 												function(data) {
 													loading(false);
 													console_log(data);
+													errordata(data);
 												}
 											);
 										},
 										function(data) {
 											loading(false);
 											console_log(data);
+											errordata(data);
 										}
 									);
 								},
 								function(data) {
 									loading(false);
 									console_log(data);
+									errordata(data);
 								}
 							);
 						},
 						function(data) {
 							loading(false);
 							console_log(data);
+							errordata(data);
 						}
 					);
 				},
 				function(data) {
 					loading(false);
 					console_log(data);
+					errordata(data);
 				}
 			);
 		},
 		function(data) {
 			loading(false);
 			console_log(data);
+			errordata(data);
 		}
 	);
 }
@@ -470,7 +481,11 @@ function pullreq(fn) {
 		function(data) {
 			loading(false);
 			console_log(data);
-			fn();
+			if(data=="422: Unprocessable Entity") {
+				fn();
+			} else {
+				errordata(data);
+			}
 		}
 	);
 }
@@ -490,7 +505,8 @@ function curl(user,pass,url,data,method,success,error) {
 			success(data);
 		},
 		error: function(jqXHR,textStatus,errorThrown){
-			error(jqXHR.status+": "+jqXHR.statusText);
+			var data=jqXHR.status+": "+jqXHR.statusText;
+			error(data);
 		}
 	});
 }
@@ -522,4 +538,16 @@ function modal(title,body) {
 	$('#modal .modal-title').html(title);
 	$('#modal .modal-body p').html(body);
 	$('#modal').modal("show");
+}
+
+function erroruser() {
+	modal("Atenció!!!","El nom d'usuari que has entrat no existeix. Si el problema persisteix, per favor, posat en contacte amb algú de suport");
+}
+
+function errorpass() {
+	modal("Atenció!!!","La clau de github que has entrat no es correcte. Si el problema persisteix, per favor, posat en contacte amb algú de suport");
+}
+
+function errordata(data) {
+	modal("Atenció!!!","S'ha produit l'error "+data+". Si el problema persisteix, per favor, posat en contacte amb algú de suport");
 }
