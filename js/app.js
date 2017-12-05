@@ -257,6 +257,7 @@ $("#"+camps.join(",#")).on("change",function() {
 $("#resultats").on("change",function() {
 	var error=0;
 	var hasdata=0;
+	var hastotal=0;
 	for(var i in camps) {
 		if($("#"+camps[i]).parent().hasClass("has-error")) {
 			error=1;
@@ -265,7 +266,10 @@ $("#resultats").on("change",function() {
 			hasdata=1;
 		}
 	}
-	if(!error && hasdata) {
+	if($("#VTOTAL").val()!="") {
+		hastotal=1;
+	}
+	if(!error && hasdata && hastotal) {
 		$("#enviar1").removeAttr("disabled");
 	} else {
 		$("#enviar1").attr("disabled","disabled");
@@ -294,6 +298,7 @@ $("#content").on("change",function() {
 $("#debug").on("change",function() {
 	if($(this).is(":checked")) {
 		$("#log").parent().removeClass("hidden");
+		$(this).parent().addClass("bg-primary");
 	} else {
 		$("#log").parent().addClass("hidden");
 	}
