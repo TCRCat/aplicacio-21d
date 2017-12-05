@@ -143,3 +143,15 @@
 	color:#fff;
 	background-color:#2780e3;
 }
+
+.btn[disabled], {
+	opacity:0.33;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+	color:#fff;
+	background-color:#2780e3;
+	border-color:#2780e3;
+}
