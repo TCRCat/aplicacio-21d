@@ -149,37 +149,36 @@ $("#user,#pass").on("change",function() {
 				loading(false);
 				console_log(data);
 				if(data=="404: Not Found") {
-					$("#mesa option").remove();
 					$("#mesa").parent().addClass("hidden");
-					$("#mesa").trigger("change");
+					$("#dades").parent().addClass("hidden");
+					$("#tabs").parent().addClass("hidden");
 					erroruser();
 				} else {
 					errordata(data);
 				}
 			}
 		});
+	} else {
+		$("#mesa").parent().addClass("hidden");
+		$("#dades").parent().addClass("hidden");
+		$("#tabs").parent().addClass("hidden");
 	}
 });
 
 $("#mesa").on("change",function() {
 	var val=$("#mesa").val();
-	if(val) {
-		var val=val.split(";");
-		provincia=val[0];
-		municipi=val[1];
-		escola=val[2];
-		mesa=val[3];
-		main=val[4];
-		repo=val[5];
-		$("#dades").parent().removeClass("hidden");
-		$("#dades").html(val.slice(0,4).join("\n"));
-		$("#tabs").parent().removeClass("hidden");
-		maketab1(provincia);
-		$('#tabs a:first').tab('show');
-	} else {
-		$("#dades").parent().addClass("hidden");
-		$("#tabs").parent().addClass("hidden");
-	}
+	val=val.split(";");
+	provincia=val[0];
+	municipi=val[1];
+	escola=val[2];
+	mesa=val[3];
+	main=val[4];
+	repo=val[5];
+	$("#dades").parent().removeClass("hidden");
+	$("#dades").html(val.slice(0,4).join("\n"));
+	$("#tabs").parent().removeClass("hidden");
+	maketab1(provincia);
+	$('#tabs a:first').tab('show');
 })
 
 $("#enviar1").on("click",function() {
@@ -229,7 +228,7 @@ $("#enviar3").on("click",function() {
 	});
 });
 
-$("#"+camps.join(",#")).on("change",function() {
+$(".form-21d").on("change",function() {
 	var key=$(this).attr("id");
 	var val=$(this).val();
 	var error=0;
@@ -261,11 +260,7 @@ $("#"+camps.join(",#")).on("change",function() {
 			$(this).parent().removeClass("has-success");
 		}
 	}
-	if(key!="VTOTAL") $("#VTOTAL").trigger("change");
-	$("#resultats").trigger("change");
-});
-
-$("#resultats").on("change",function() {
+	// SECOND ITER
 	var error=0;
 	var hasdata=0;
 	var hastotal=0;
@@ -285,6 +280,8 @@ $("#resultats").on("change",function() {
 	} else {
 		$("#enviar1").attr("disabled","disabled");
 	}
+	// CONTINUE
+	if(key!="VTOTAL") $("#VTOTAL").trigger("change");
 });
 
 $("#camera").on("change",function() {
