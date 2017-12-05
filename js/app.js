@@ -520,5 +520,5 @@ function maketab1(provincia) {
 function modal(title,body) {
 	$('#modal .modal-title').html(title);
 	$('#modal .modal-body p').html(body);
-	$('#modal').modal();
+	$('#modal').modal("show");
 }
