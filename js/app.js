@@ -298,9 +298,10 @@ $("#content").on("change",function() {
 $("#debug").on("change",function() {
 	if($(this).is(":checked")) {
 		$("#log").parent().removeClass("hidden");
-		$(this).parent().addClass("bg-primary");
+		$(this).parent().addClass("debug3");
 	} else {
 		$("#log").parent().addClass("hidden");
+		$(this).parent().removeClass("debug3");
 	}
 });
 
